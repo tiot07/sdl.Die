@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     private Cube cube;
     private Pyramid pyramid;
+    private Crystal crystal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         renderer = new SimpleRenderer();
         cube = new Cube();
         pyramid = new Pyramid();
+        crystal = new Crystal();
         renderer.setObj(cube);
         glView.setRenderer(renderer);
     }
@@ -64,31 +66,34 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     }
 
     @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected");
         switch (item.getItemId()) {
-        case R.id.menu_cube:
-            renderer.setObj(cube);
-            break;
-        case R.id.menu_pyramid:
-            renderer.setObj(pyramid);
-            break;
+            case R.id.menu_cube:
+                renderer.setObj(cube);
+                break;
+            case R.id.menu_pyramid:
+                renderer.setObj(pyramid);
+                break;
+            case R.id.menu_crystal:
+                renderer.setObj(crystal);
+                break;
         }
         return true;
-    }
+}
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         switch (seekBar.getId()) {
-        case R.id.seekbar_x:
-            renderer.rotateObjX(progress);
-            break;
-        case R.id.seekbar_y:
-            renderer.rotateObjY(progress);
-            break;
-        case R.id.seekbar_z:
-            renderer.rotateObjZ(progress);
-            break;
+            case R.id.seekbar_x:
+                renderer.rotateObjX(progress);
+                break;
+            case R.id.seekbar_y:
+                renderer.rotateObjY(progress);
+                break;
+            case R.id.seekbar_z:
+                renderer.rotateObjZ(progress);
+                break;
         }
     }
 
